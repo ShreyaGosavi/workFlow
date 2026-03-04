@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BullModule } from '@nestjs/bullmq';
 import { QueueModule } from './queue/queue.module';
+import { JobsModule } from './jobs/jobs.module';
+import { ProcessorsModule } from './processors/processors.module';
 import redisConfig from './config/redis.config';
 
 @Module({
@@ -25,6 +27,10 @@ import redisConfig from './config/redis.config';
     }),
 
     QueueModule,
+
+    JobsModule,
+
+    ProcessorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
