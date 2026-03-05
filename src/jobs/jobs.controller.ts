@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -43,5 +44,18 @@ export class JobsController {
     }
 
     return job;
+  }
+
+  @Delete(':jobId')
+  async deleteJob(@Param('jobId') jobId: string) {
+    const result = await this.jobsService.deleteJob(jobId);
+
+    if (!result) {
+      return {
+        message: 'Job not found',
+      };
+    }
+
+    return result;
   }
 }

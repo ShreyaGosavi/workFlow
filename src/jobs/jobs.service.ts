@@ -18,4 +18,8 @@ export class JobsService {
   async getJobStatus(jobId: string) {
     return this.queueService.getJobStatus(jobId);
   }
+
+  async deleteJob(jobId: string) {
+    return this.queueService.deleteJob(jobId);
+  }
 }

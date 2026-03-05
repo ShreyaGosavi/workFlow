@@ -42,7 +42,30 @@ export class QueueService {
       id: job.id,
       state,
       progress: job.progress,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       data: job.data,
+    };
+  }
+
+  async deleteJob(jobId: string) {
+    const job = await this.queue.getJob(jobId);
+
+    if (!job) {
+      return null;
+    }
+
+    const state = await job.getState();
+
+    if (state === 'active') {
+      throw new Error('Cannot delete an active job');
+    }
+
+    await job.remove();
+
+    return {
+      id: jobId,
+      state,
+      message: 'Job removed from queue',
     };
   }
 }
