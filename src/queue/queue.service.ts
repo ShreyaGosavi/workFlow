@@ -28,4 +28,21 @@ export class QueueService {
       removeOnComplete: true,
     });
   }
+
+  async getJobStatus(jobId: string) {
+    const job = await this.queue.getJob(jobId);
+
+    if (!job) {
+      return null;
+    }
+
+    const state = await job.getState();
+
+    return {
+      id: job.id,
+      state,
+      progress: job.progress,
+      data: job.data,
+    };
+  }
 }

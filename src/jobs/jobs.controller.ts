@@ -1,4 +1,12 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { NotificationDto } from './dto/notification.dto';
 import { JobsService } from './jobs.service';
 import { ReportDto } from './dto/report.dto';
@@ -22,5 +30,18 @@ export class JobsController {
       message: 'Report job accepted',
       jobId: job.id,
     };
+  }
+
+  @Get(':jobId')
+  async getJobStatus(@Param('jobId') jobId: string) {
+    const job = await this.jobsService.getJobStatus(jobId);
+
+    if (!job) {
+      return {
+        message: 'Job not found',
+      };
+    }
+
+    return job;
   }
 }

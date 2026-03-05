@@ -14,4 +14,8 @@ export class JobsService {
   async generateReport(data: ReportDto) {
     return this.queueService.addReportJob(data);
   }
+
+  async getJobStatus(jobId: string) {
+    return this.queueService.getJobStatus(jobId);
+  }
 }

@@ -1,6 +1,28 @@
+### Create Notification Job
+
+POST http://localhost:3000/jobs/notification
+Content-Type: application/json
+
+{
+  "email": "xyz@gmail.com",
+  "message": "Hello from WorkFlow"
+}
+
+###
+
+### Create Report Job
+
 POST http://localhost:3000/jobs/report
 Content-Type: application/json
 
 {
   "reportType": "sales-summary"
 }
+
+###
+
+### Check Job Status (replace jobId)
+
+GET http://localhost:3000/jobs/21
+
+###
