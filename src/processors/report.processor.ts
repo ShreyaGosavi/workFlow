@@ -14,7 +14,7 @@ export class ReportProcessor extends WorkerHost {
     const steps = 5;
 
     for (let i = 1; i <= steps; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
 
       const progress = Math.floor((i / steps) * 100);
 

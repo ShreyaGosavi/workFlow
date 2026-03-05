@@ -22,4 +22,8 @@ export class JobsService {
   async deleteJob(jobId: string) {
     return this.queueService.deleteJob(jobId);
   }
+
+  async getQueueSnapshot() {
+    return this.queueService.getQueueSnapshot();
+  }
 }

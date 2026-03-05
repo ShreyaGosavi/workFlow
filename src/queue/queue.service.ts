@@ -68,4 +68,18 @@ export class QueueService {
       message: 'Job removed from queue',
     };
   }
+
+  async getQueueSnapshot() {
+    const waiting = await this.queue.getWaitingCount();
+    const active = await this.queue.getActiveCount();
+    const completed = await this.queue.getCompletedCount();
+    const failed = await this.queue.getFailedCount();
+
+    return {
+      waiting,
+      active,
+      completed,
+      failed,
+    };
+  }
 }

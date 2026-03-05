@@ -23,10 +23,16 @@ Content-Type: application/json
 
 ### Check Job Status (replace jobId)
 
-GET http://localhost:3000/jobs/21
+GET http://localhost:3000/jobs/31
 
 ###
 
 ### Delete Job
 
-DELETE http://localhost:3000/jobs/27
+DELETE http://localhost:3000/jobs/30
+
+###
+
+###Get Queue Snapshot
+
+GET http://localhost:3000/jobs

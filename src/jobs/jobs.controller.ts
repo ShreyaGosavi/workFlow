@@ -58,4 +58,9 @@ export class JobsController {
 
     return result;
   }
+
+  @Get()
+  async getQueueSnapshot() {
+    return this.jobsService.getQueueSnapshot();
+  }
 }

@@ -15,7 +15,7 @@ export class NotificationProcessor extends WorkerHost {
       const { email, message } = job.data;
 
       // simulate sending notification
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
 
       this.logger.log(`Notification sent to ${email}: ${message}`);
     }
