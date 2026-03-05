@@ -11,7 +11,6 @@ export class NotificationProcessor extends WorkerHost {
   async process(job: Job) {
     if (job.name === 'notification') {
       this.logger.log(`Processing notification job ${job.id}`);
-
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const { email, message } = job.data;
 
