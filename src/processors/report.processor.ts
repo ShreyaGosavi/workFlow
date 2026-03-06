@@ -2,7 +2,13 @@ import { Processor, WorkerHost, OnWorkerEvent } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { Logger } from '@nestjs/common';
 
-@Processor('workflow-queue')
+@Processor('workflow-queue', {
+  concurrency: 2,
+  limiter: {
+    max: 2,
+    duration: 3000,
+  },
+})
 export class ReportProcessor extends WorkerHost {
   private readonly logger = new Logger(ReportProcessor.name);
 

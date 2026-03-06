@@ -4,6 +4,10 @@ import { Logger } from '@nestjs/common';
 
 @Processor('workflow-queue', {
   concurrency: 3,
+  limiter: {
+    max: 5,
+    duration: 3000,
+  },
 })
 export class NotificationProcessor extends WorkerHost {
   private readonly logger = new Logger(NotificationProcessor.name);
