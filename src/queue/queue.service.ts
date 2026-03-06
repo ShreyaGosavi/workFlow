@@ -13,6 +13,7 @@ export class QueueService {
 
   async addNotificationJob(data: NotificationDto) {
     return this.queue.add('notification', data, {
+      priority: 1,
       attempts: 3,
       backoff: {
         type: 'exponential',
@@ -24,6 +25,7 @@ export class QueueService {
 
   async addReportJob(data: ReportDto) {
     return this.queue.add('report', data, {
+      priority: 10,
       attempts: 2,
       removeOnComplete: true,
     });
