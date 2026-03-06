@@ -7,6 +7,8 @@ import { QueueModule } from './queue/queue.module';
 import { JobsModule } from './jobs/jobs.module';
 import { ProcessorsModule } from './processors/processors.module';
 import redisConfig from './config/redis.config';
+import { ScheduleModule } from '@nestjs/schedule';
+import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
   imports: [
@@ -26,11 +28,15 @@ import redisConfig from './config/redis.config';
       inject: [ConfigService],
     }),
 
+    ScheduleModule.forRoot(),
+
     QueueModule,
 
     JobsModule,
 
     ProcessorsModule,
+
+    SchedulerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
