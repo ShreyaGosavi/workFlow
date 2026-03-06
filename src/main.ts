@@ -14,6 +14,6 @@ async function bootstrap() {
   app.use('/admin/queues', serverAdapter.getRouter());
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

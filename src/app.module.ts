@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { BullModule } from '@nestjs/bullmq';
 import { QueueModule } from './queue/queue.module';
 import { JobsModule } from './jobs/jobs.module';
@@ -16,15 +16,19 @@ import { SchedulerModule } from './scheduler/scheduler.module';
       load: [redisConfig],
     }),
 
-    BullModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        connection: {
-          host: configService.get<string>('redis.host'),
-          port: configService.get<number>('redis.port'),
+    BullModule.forRoot({
+      connection: {
+        host: process.env.REDIS_HOST,
+        port: Number(process.env.REDIS_PORT),
+        username: 'default',
+        password: process.env.REDIS_PASSWORD,
+        tls: {
+          servername: 'workflow-redis-shreya.redis.cache.windows.net',
+          rejectUnauthorized: false,
         },
-      }),
-      inject: [ConfigService],
+        connectTimeout: 10000,
+        maxRetriesPerRequest: null,
+      },
     }),
 
     ScheduleModule.forRoot(),
