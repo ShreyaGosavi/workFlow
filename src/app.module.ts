@@ -5,7 +5,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BullModule } from '@nestjs/bullmq';
 import { QueueModule } from './queue/queue.module';
 import { JobsModule } from './jobs/jobs.module';
-import { ProcessorsModule } from './processors/processors.module';
 import redisConfig from './config/redis.config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SchedulerModule } from './scheduler/scheduler.module';
@@ -33,8 +32,6 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     QueueModule,
 
     JobsModule,
-
-    ProcessorsModule,
 
     SchedulerModule,
   ],
